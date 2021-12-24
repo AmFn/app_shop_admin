@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.StoreOrderDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.StoreOrderEntity" id="storeOrderMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="extendOrderId" column="extend_order_id"/>
+        <result property="uid" column="uid"/>
+        <result property="pid" column="pid"/>
+        <result property="realName" column="real_name"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="userAddress" column="user_address"/>
+        <result property="cartId" column="cart_id"/>
+        <result property="freightPrice" column="freight_price"/>
+        <result property="totalNum" column="total_num"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="totalPostage" column="total_postage"/>
+        <result property="payPrice" column="pay_price"/>
+        <result property="payPostage" column="pay_postage"/>
+        <result property="deductionPrice" column="deduction_price"/>
+        <result property="couponId" column="coupon_id"/>
+        <result property="couponPrice" column="coupon_price"/>
+        <result property="paid" column="paid"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="payType" column="pay_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="refundStatus" column="refund_status"/>
+        <result property="refundReasonWapImg" column="refund_reason_wap_img"/>
+        <result property="refundReasonWapExplain" column="refund_reason_wap_explain"/>
+        <result property="refundReasonTime" column="refund_reason_time"/>
+        <result property="refundReasonWap" column="refund_reason_wap"/>
+        <result property="refundReason" column="refund_reason"/>
+        <result property="refundPrice" column="refund_price"/>
+        <result property="deliverySn" column="delivery_sn"/>
+        <result property="deliveryName" column="delivery_name"/>
+        <result property="deliveryType" column="delivery_type"/>
+        <result property="deliveryId" column="delivery_id"/>
+        <result property="gainIntegral" column="gain_integral"/>
+        <result property="useIntegral" column="use_integral"/>
+        <result property="backIntegral" column="back_integral"/>
+        <result property="mark" column="mark"/>
+        <result property="isDel" column="is_del"/>
+<!--        <result property="unique" column="unique"/>-->
+        <result property="remark" column="remark"/>
+        <result property="cost" column="cost"/>
+        <result property="seckillId" column="seckill_id"/>
+        <result property="bargainId" column="bargain_id"/>
+        <result property="verifyCode" column="verify_code"/>
+        <result property="shippingType" column="shipping_type"/>
+    </resultMap>
+
+
+</mapper>

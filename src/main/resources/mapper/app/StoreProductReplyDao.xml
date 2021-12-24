@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.StoreProductReplyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.StoreProductReplyEntity" id="storeProductReplyMap">
+        <result property="id" column="id"/>
+        <result property="uid" column="uid"/>
+        <result property="oid" column="oid"/>
+<!--        <result property="unique" column="unique"/>-->
+        <result property="productId" column="product_id"/>
+        <result property="replyType" column="reply_type"/>
+        <result property="productScore" column="product_score"/>
+        <result property="serviceScore" column="service_score"/>
+        <result property="comment" column="comment"/>
+        <result property="pics" column="pics"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="merchantReplyContent" column="merchant_reply_content"/>
+        <result property="merchantReplyTime" column="merchant_reply_time"/>
+        <result property="isDel" column="is_del"/>
+        <result property="isReply" column="is_reply"/>
+    </resultMap>
+
+
+</mapper>

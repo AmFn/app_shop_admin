@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.StoreProductAttrValueDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.StoreProductAttrValueEntity" id="storeProductAttrValueMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="sku" column="sku"/>
+        <result property="stock" column="stock"/>
+        <result property="sales" column="sales"/>
+        <result property="price" column="price"/>
+        <result property="image" column="image"/>
+<!--        <result property="unique" column="unique"/>-->
+        <result property="cost" column="cost"/>
+        <result property="barCode" column="bar_code"/>
+        <result property="otPrice" column="ot_price"/>
+        <result property="weight" column="weight"/>
+        <result property="volume" column="volume"/>
+        <result property="seckillPrice" column="seckill_price"/>
+        <result property="seckillStock" column="seckill_stock"/>
+    </resultMap>
+
+
+</mapper>
