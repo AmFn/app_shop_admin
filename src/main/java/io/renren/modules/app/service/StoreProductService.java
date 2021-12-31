@@ -2,6 +2,7 @@ package io.renren.modules.app.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.common.utils.PageUtils;
+import io.renren.modules.app.entity.StoreProductAttrValueEntity;
 import io.renren.modules.app.entity.StoreProductEntity;
 
 import java.util.List;
@@ -21,5 +22,7 @@ public interface StoreProductService extends IService<StoreProductEntity> {
     List<StoreProductEntity> getProductsInCategory(Long cid);
 
     Integer getCountByCategoryId(Long cid);
+
+    List<StoreProductAttrValueEntity> getSkuById(Long id);
 }
 

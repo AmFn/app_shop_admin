@@ -11,9 +11,11 @@ package io.renren.modules.app.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.common.utils.PageUtils;
+import io.renren.modules.app.entity.StoreProductEntity;
 import io.renren.modules.app.entity.UserEntity;
 import io.renren.modules.app.form.LoginForm;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,4 +35,22 @@ public interface UserService extends IService<UserEntity> {
 	long login(LoginForm form);
 
 	PageUtils queryPage(Map<String, Object> params);
+
+	/**
+	 * 添加历史记录
+	 * @param userId
+	 * @param skuId
+	 */
+	public void addRecentHistory(Long userId, Long skuId);
+
+	/**
+	 * 获取历史记录
+	 * @param uid
+	 * @return
+	 */
+	List<StoreProductEntity> getHistorySkuList(Long uid);
+
+	List<StoreProductEntity> getUserLike(Long uid);
+
+	List<StoreProductEntity> getUserCollect(Long uid);
 }

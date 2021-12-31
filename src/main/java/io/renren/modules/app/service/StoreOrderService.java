@@ -4,11 +4,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 import io.renren.modules.app.entity.StoreOrderEntity;
-import io.renren.modules.app.vo.CreateOrderVo;
-import io.renren.modules.app.vo.DeliveryVo;
-import io.renren.modules.app.vo.OrderCountVo;
-import io.renren.modules.app.vo.SubmitOrderResponseVo;
+import io.renren.modules.app.vo.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,5 +29,7 @@ public interface StoreOrderService extends IService<StoreOrderEntity> {
     Map<String, Object> cateCount();
 
     Map<String, Object> dataCount();
+
+    List<UserOrderVo> getByUSerID(Long uid);
 }
 

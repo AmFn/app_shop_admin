@@ -6,6 +6,7 @@ import io.renren.modules.app.service.StoreProductService;
 import io.renren.modules.app.vo.CartProductNumVo;
 import io.renren.modules.app.vo.CartVo;
 import io.renren.modules.app.vo.CountVo;
+import io.renren.modules.app.vo.addCartVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +70,24 @@ public class StoreCartServiceImpl extends ServiceImpl<StoreCartDao, StoreCartEnt
         cartVo.setTotalPrice(computePrice(productNumVos));
 
         return cartVo;
+    }
+
+    @Override
+    public boolean add(addCartVo addCartVo) {
+        if (addCartVo.getUid()!=null&&addCartVo.getNum()!=null&&addCartVo.getProductId()!=null){
+            StoreCartEntity storeCartEntity = new StoreCartEntity();
+            storeCartEntity.setProductId(addCartVo.getUid());
+            storeCartEntity.setUid(addCartVo.getUid());
+            storeCartEntity.setIsPay(0);
+            storeCartEntity.setType("product");
+            storeCartEntity.setCartNum(addCartVo.getNum());
+            baseMapper.insert(storeCartEntity);
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
     private BigDecimal computePrice(List<CartProductNumVo> productNumVos) {

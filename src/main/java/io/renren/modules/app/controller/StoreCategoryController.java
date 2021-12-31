@@ -33,26 +33,23 @@ public class StoreCategoryController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
-
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = storeCategoryService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
-
-    @ApiOperation(value = "查询商品分类")
+//    @RequestMapping("/list")
+    @ApiOperation(value = "分类树")
     @GetMapping(value = "/categoryTree")
     @Cacheable(value = {"storeCategory"},key = "#root.method.name")
-    public R getStoreCategorys() {
-
-        List<StoreCategoryEntity> categorylist = storeCategoryService.queryAll();
-        return R.ok().put("categorylist", categorylist);
+    public R list(){
+        List<StoreCategoryEntity> categoryEntities = storeCategoryService.queryAll();
+        return R.ok().put("categoryEntities", categoryEntities);
     }
+
+
+
+
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
+//    @ApiOperation(value = "查询商品分类")
 
     public R info(@PathVariable("id") Integer id){
 		StoreCategoryEntity storeCategory = storeCategoryService.getById(id);

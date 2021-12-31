@@ -1,22 +1,15 @@
 package io.renren.modules.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import io.renren.modules.app.entity.StoreCategoryEntity;
-import io.renren.modules.app.entity.StoreOrderEntity;
+import io.renren.modules.app.entity.StoreProductAttrValueEntity;
 import io.renren.modules.app.service.StoreCategoryService;
-import io.renren.modules.app.service.StoreOrderService;
+import io.renren.modules.app.service.StoreProductAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -31,6 +24,8 @@ import org.springframework.util.StringUtils;
 
 @Service("storeProductService")
 public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreProductEntity> implements StoreProductService {
+    @Autowired
+    StoreProductAttrValueService productAttrValueService;
     @Autowired
     private StoreCategoryService categoryService;
     @CachePut(value = {"storeproduct"},key = "#root.method.name")
@@ -60,8 +55,13 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
 
     @Override
     public List<StoreProductEntity> getProductsInCategory(Long cid) {
-        return baseMapper.selectList(new LambdaQueryWrapper<StoreProductEntity>()
-                .eq(StoreProductEntity::getCateId, cid));
+        if(null==cid){
+            return baseMapper.selectList(new LambdaQueryWrapper<StoreProductEntity>()
+                    .eq(StoreProductEntity::getCateId, cid));
+        }else {
+            return null;
+        }
+
     }
 
     @Override
@@ -75,8 +75,12 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         return integer;
     }
 
-
-
-
-
+    @Override
+    public List<StoreProductAttrValueEntity> getSkuById(Long id) {
+        List<StoreProductAttrValueEntity> storeProductAttrValueEntities = productAttrValueService.getBaseMapper().selectList(
+                new LambdaQueryWrapper<StoreProductAttrValueEntity>()
+                        .eq(StoreProductAttrValueEntity::getProductId, id)
+        );
+        return storeProductAttrValueEntities;
+    }
 }

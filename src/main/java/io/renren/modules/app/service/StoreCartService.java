@@ -6,6 +6,7 @@ import io.renren.modules.app.entity.StoreCartEntity;
 import io.renren.modules.app.entity.StoreProductEntity;
 import io.renren.modules.app.vo.CartVo;
 import io.renren.modules.app.vo.CountVo;
+import io.renren.modules.app.vo.addCartVo;
 
 import java.util.List;
 import java.util.Map;
@@ -22,5 +23,7 @@ public interface StoreCartService extends IService<StoreCartEntity> {
     PageUtils queryPage(Map<String, Object> params);
     List<CountVo> findCateName();
     CartVo getCartByUid(Long uid);
+
+    boolean add(addCartVo addCartVo);
 }
 

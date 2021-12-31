@@ -58,16 +58,11 @@ public class StoreSeckillServiceImpl extends ServiceImpl<StoreSeckillDao, StoreS
     StoreProductService productService;
 
 
-    //K: SESSION_CACHE_PREFIX + startTime + "_" + endTime
-    //V: sessionId+"-"+skuId的List
     private final String SESSION_CACHE_PREFIX = "seckill:sessions:";
 
-    //K: 固定值SECKILL_CHARE_PREFIX
-    //V: hash，k为sessionId+"-"+skuId，v为对应的商品信息SeckillSkuRedisTo
+
     private final String SECKILL_CHARE_PREFIX = "seckill:skus";
 
-    //K: SKU_STOCK_SEMAPHORE+商品随机码
-    //V: 秒杀的库存件数
     private final String SKU_STOCK_SEMAPHORE = "seckill:stock:";
 
     @Override
@@ -142,7 +137,7 @@ public class StoreSeckillServiceImpl extends ServiceImpl<StoreSeckillDao, StoreS
     public void uploadSeckill() {
         List<StoreSeckillEntity> sessions = getSeckillSessionsIn3Days();
         if (sessions!=null) {
-            //在redis中分别保存秒杀场次信息和场次对应的秒杀商品信息
+            //在redis保存商品信息
             saveSecKillSession(sessions);
             saveSecKill(sessions);
         }
@@ -155,7 +150,7 @@ public class StoreSeckillServiceImpl extends ServiceImpl<StoreSeckillDao, StoreS
                 if (!ops.hasKey(key)){
                     String jsonString = JSON.toJSONString(session);
                     ops.put(key,jsonString);
-                    // 使用库存作为Redisson信号量限制库存
+                    // 库存作信号量
                     RSemaphore semaphore = redissonClient.getSemaphore(SKU_STOCK_SEMAPHORE );
                     semaphore.trySetPermits(session.getStock());
                 }

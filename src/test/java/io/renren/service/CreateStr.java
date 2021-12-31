@@ -3,11 +3,20 @@ package io.renren.service;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.renren.common.utils.OrderUtil;
+import io.renren.common.validator.Assert;
+import io.renren.modules.app.entity.UserEntity;
+import org.apache.catalina.User;
 import org.junit.Test;
 
 import java.util.Date;
 
 public class CreateStr {
+
+    @Test
+    public  void  test(){
+
+    }
+
     @Test
     public  void   create(){
         String s= "storecouponissue";

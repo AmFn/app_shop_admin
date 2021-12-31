@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import io.renren.modules.app.entity.StoreProductAttrValueEntity;
 import io.renren.modules.app.entity.StoreProductEntity;
 import io.renren.modules.app.service.StoreProductService;
 import io.swagger.annotations.Api;
@@ -41,19 +42,16 @@ public class StoreProductController {
 
 
 
-    @GetMapping
+    @GetMapping("/getByCategoryId/{cid}")
     @ApiOperation("获取分类数据下的商品")
     public R getProductsInCategory(@PathVariable("cid") Long cid){
        List<StoreProductEntity> productEntities = storeProductService.getProductsInCategory(cid);
         return R.ok().put("products",productEntities);
     }
-    @GetMapping("/infoWithSku/{id}")
-//    @RequiresPermissions("app:storeproduct:info")
-//    @ApiOperation("获取商品SKU详情")
+    @GetMapping("/sku/{id}")
     public R infoWithSku(@PathVariable("id") Long id){
-        StoreProductEntity storeProduct = storeProductService.getById(id);
-
-        return R.ok().put("storeProduct", storeProduct);
+        List<StoreProductAttrValueEntity> skuById = storeProductService.getSkuById(id);
+        return R.ok().put("sku", skuById);
     }
     /**
      * 信息

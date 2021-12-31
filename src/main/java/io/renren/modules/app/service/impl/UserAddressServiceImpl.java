@@ -1,5 +1,6 @@
 package io.renren.modules.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -35,5 +36,11 @@ public class UserAddressServiceImpl extends ServiceImpl<UserAddressDao, UserAddr
         sb.append(userAddressEntity.getDistrict());
         sb.append(userAddressEntity.getDetail());
         return sb.toString();
+    }
+
+    @Override
+    public UserAddressEntity getUserAddr(Long uid) {
+        UserAddressEntity userAddressEntity = baseMapper.selectOne(new LambdaQueryWrapper<UserAddressEntity>().eq(UserAddressEntity::getUid, uid));
+        return userAddressEntity;
     }
 }

@@ -88,7 +88,7 @@ public class UserSignController {
     }
     @RequestMapping("/setting")
 //    @RequiresPermissions("app:usersign:update")
-    @ApiOperation("设置积分")
+//    @ApiOperation("设置积分")
 
     public R setting(@RequestBody IntegralSettingVo settingVo){
 

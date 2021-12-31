@@ -45,9 +45,9 @@ public class StoreCartController {
     }
 
 
-    @Login
-    @RequestMapping("/getUserCart/{id}")
-    @ApiOperation("获取用户购物车商品")
+//    @Login
+    @GetMapping("/getUserCart/{id}")
+    @ApiOperation(value = "获取用户购物车商品",httpMethod = "GET")
     public R list(@PathVariable("id") Long id){
         if(null==id){
             return R.error("请传用户id");
@@ -70,13 +70,26 @@ public class StoreCartController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/add")
     @ApiOperation("加入购物车")
-    public R save(@RequestBody StoreCartEntity storeCart){
-		storeCartService.save(storeCart);
+    public R save(@RequestBody addCartVo addCartVo){
+        if(storeCartService.add(addCartVo)){
+            return R.ok();
+        }
 
-        return R.ok();
+        return R.error("添加失败");
     }
+
+//    /**
+//     * 保存
+//     */
+//    @RequestMapping("/save")
+//    @ApiOperation("加入购物车")
+//    public R save(@RequestBody StoreCartEntity storeCart){
+//		storeCartService.save(storeCart);
+//
+//        return R.ok();
+//    }
     /**
      * 购物车加数量
      */

@@ -17,5 +17,7 @@ public interface UserAddressService extends IService<UserAddressEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
     String getAddressStringById(Integer id);
+
+    UserAddressEntity getUserAddr(Long uid);
 }
 

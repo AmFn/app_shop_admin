@@ -1,12 +1,10 @@
 package io.renren.modules.app.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
-import io.renren.modules.app.vo.CreateOrderVo;
-import io.renren.modules.app.vo.DeliveryVo;
-import io.renren.modules.app.vo.OrderCountVo;
-import io.renren.modules.app.vo.SubmitOrderResponseVo;
+import io.renren.modules.app.vo.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -55,6 +53,13 @@ public class StoreOrderController {
 		StoreOrderEntity storeOrder = storeOrderService.getById(id);
 
         return R.ok().put("storeOrder", storeOrder);
+    }
+
+    @GetMapping("/getUserOrder{uid}")
+    @ApiOperation("获取用户所有订单")
+    public R getUserOrder(@PathVariable("uid") Long uid){
+        List<UserOrderVo> list = storeOrderService.getByUSerID(uid);
+        return R.ok().put("storeOrder", list);
     }
 
     @PostMapping("/create")

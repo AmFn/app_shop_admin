@@ -218,6 +218,18 @@ chartDataVo.setTime(DateUtil.format(DateUtil.parseDate(chartDataVo.getTime()),"M
         return map;
     }
 
+    @Override
+    public List<UserOrderVo> getByUSerID(Long uid) {
+//        List<StoreOrderEntity> orderEntities = baseMapper.selectList(new LambdaQueryWrapper<StoreOrderEntity>().eq(StoreOrderEntity::getUid, uid));
+        if(null!=uid){
+            List<UserOrderVo> orderEntities = storeOrderDao.getByUSerID(uid);
+            return orderEntities;
+
+        }else{
+            return null;
+        }
+    }
+
     private StoreOrderEntity createOrderEveryProduct(StoreProductEntity product, CreateOrderVo createOrderVo,Integer num) {
         StoreOrderEntity order = new StoreOrderEntity();
         UserAddressEntity address = createOrderVo.getAddress();

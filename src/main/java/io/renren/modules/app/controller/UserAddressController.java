@@ -3,14 +3,10 @@ package io.renren.modules.app.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import io.renren.modules.app.entity.UserAddressEntity;
 import io.renren.modules.app.service.UserAddressService;
 import io.renren.common.utils.PageUtils;
@@ -52,6 +48,22 @@ public class UserAddressController {
 		UserAddressEntity userAddress = userAddressService.getById(id);
 
         return R.ok().put("userAddress", userAddress);
+    }
+
+    @GetMapping("/getUserAddr/{uid}")
+    @ApiOperation("获取用户地址")
+    public R getUserAddr(@PathVariable("uid") Long uid){
+        UserAddressEntity userAddress = userAddressService.getUserAddr(uid);
+
+        return R.ok().put("userAddress", userAddress);
+    }
+
+    @PostMapping("/saveAddr")
+    @ApiOperation("保存收获地址")
+    public R saveAddr(@RequestBody UserAddressEntity userAddress){
+        userAddressService.save(userAddress);
+
+        return R.ok();
     }
 
     /**
