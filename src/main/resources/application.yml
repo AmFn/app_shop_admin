@@ -68,8 +68,8 @@ aliyun:
   oss:
     file:
       endpoint: oss-cn-shenzhen.aliyuncs.com
-      keyid: LTAI4GFnTYjVH8Y73k4oKSrg
-      keysecret: KN0QatGmkMxdsKRuhn5yqZBBKZUhpa
+      keyid: keyid
+      keysecret: keysecret
       bucketname: cyf-file
 
 renren:
